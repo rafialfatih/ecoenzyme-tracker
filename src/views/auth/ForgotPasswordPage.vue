@@ -10,7 +10,7 @@
       ></div>
     </div>
 
-    <!-- Login Card -->
+    <!-- Forgot Password Card -->
     <div class="relative w-full max-w-md">
       <!-- Back Button -->
       <button
@@ -28,10 +28,28 @@
           <div
             class="w-16 h-16 bg-eco-green-600 rounded-full flex items-center justify-center mx-auto mb-4"
           >
-            <i class="fas fa-user text-3xl text-white"></i>
+            <i class="fas fa-key text-3xl text-white"></i>
           </div>
-          <h1 class="text-2xl font-bold text-gray-900 mb-2">Selamat Datang</h1>
-          <p class="text-gray-600">Login untuk memulai tracking eco enzyme Anda</p>
+          <h1 class="text-2xl font-bold text-gray-900 mb-2">Lupa Password?</h1>
+          <p class="text-gray-600">
+            Masukkan email Anda dan kami akan mengirimkan link untuk reset password
+          </p>
+        </div>
+
+        <!-- Success Message -->
+        <div
+          v-if="successMessage"
+          class="mb-6 p-4 bg-eco-green-50 border-2 border-eco-green-200 rounded-lg"
+        >
+          <div class="flex items-center gap-3">
+            <i class="fas fa-check-circle text-eco-green-600 flex-shrink-0"></i>
+            <div>
+              <p class="text-sm font-medium text-eco-green-800">{{ successMessage }}</p>
+              <p class="text-xs text-eco-green-600 mt-1">
+                Silakan cek email Anda untuk melanjutkan reset password
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- Error Message -->
@@ -43,7 +61,7 @@
         </div>
 
         <!-- Form -->
-        <form @submit.prevent="handleLogin" class="space-y-5">
+        <form v-if="!successMessage" @submit.prevent="handleResetPassword" class="space-y-5">
           <!-- Email -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2"> Email </label>
@@ -58,43 +76,6 @@
             />
           </div>
 
-          <!-- Password -->
-          <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              Password
-            </label>
-            <div class="relative">
-              <input
-                id="password"
-                v-model="password"
-                :type="showPassword ? 'text' : 'password'"
-                required
-                placeholder="••••••••"
-                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-eco-green-500 focus:ring-2 focus:ring-eco-green-200 outline-none transition-colors pr-12"
-                :disabled="authStore.loading"
-              />
-              <button
-                type="button"
-                @click="showPassword = !showPassword"
-                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-              >
-                <i v-if="!showPassword" class="fas fa-eye"></i>
-                <i v-else class="fas fa-eye-slash"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Forgot Password -->
-          <div class="flex items-center justify-end">
-            <button
-              type="button"
-              @click="handleGoToForgotPassword"
-              class="text-sm text-eco-green-600 hover:text-eco-green-700 font-medium"
-            >
-              Lupa Password?
-            </button>
-          </div>
-
           <!-- Submit Button -->
           <button
             type="submit"
@@ -102,40 +83,33 @@
             class="w-full px-6 py-3 bg-eco-green-600 hover:bg-eco-green-700 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
           >
             <i v-if="authStore.loading" class="fas fa-spinner fa-spin"></i>
-            <span>{{ authStore.loading ? 'Memproses...' : 'Login' }}</span>
+            <span>{{ authStore.loading ? 'Mengirim...' : 'Kirim Link Reset' }}</span>
           </button>
         </form>
 
-        <!-- Divider -->
-        <div class="relative my-6">
-          <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300"></div>
-          </div>
-          <div class="relative flex justify-center text-sm">
-            <span class="px-4 bg-white text-gray-500">Atau</span>
-          </div>
-        </div>
-
-        <!-- Register Link -->
-        <div class="text-center">
+        <!-- Back to Login -->
+        <div v-if="!successMessage" class="mt-6 text-center">
           <p class="text-gray-600">
-            Belum punya akun?
+            Ingat password Anda?
             <button
-              @click="handleGoToRegister"
+              @click="handleGoToLogin"
               class="text-eco-green-600 hover:text-eco-green-700 font-semibold"
             >
-              Daftar Sekarang
+              Login
             </button>
           </p>
         </div>
-      </div>
 
-      <!-- Info -->
-      <p class="text-center text-sm text-gray-500 mt-6">
-        Dengan login, Anda menyetujui
-        <a href="#" class="text-eco-green-600 hover:underline">Syarat & Ketentuan</a>
-        kami
-      </p>
+        <!-- Back to Login after success -->
+        <div v-if="successMessage" class="mt-6">
+          <button
+            @click="handleGoToLogin"
+            class="w-full px-6 py-3 bg-eco-green-600 hover:bg-eco-green-700 text-white font-semibold rounded-lg transition-colors"
+          >
+            Kembali ke Login
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -149,26 +123,24 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const email = ref('')
-const password = ref('')
-const showPassword = ref(false)
+const successMessage = ref('')
 
-const handleLogin = async () => {
-  const result = await authStore.signIn(email.value, password.value)
+const handleResetPassword = async () => {
+  authStore.clearError()
+  const result = await authStore.resetPassword(email.value)
 
   if (result.success) {
-    router.push('/dashboard')
+    successMessage.value = 'Link reset password telah dikirim ke email Anda!'
+    email.value = ''
   }
 }
 
 const handleBack = () => {
-  router.push('/')
+  router.push('/login')
 }
 
-const handleGoToRegister = () => {
-  router.push('/register')
-}
-
-const handleGoToForgotPassword = () => {
-  router.push('/forgot-password')
+const handleGoToLogin = () => {
+  router.push('/login')
 }
 </script>
+

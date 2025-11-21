@@ -1,135 +1,90 @@
 <template>
-  <section class="py-16 bg-white relative overflow-hidden">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute -top-32 -right-32 w-80 h-80 bg-eco-green-200 rounded-full"></div>
-      <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-eco-green-100 rounded-full"></div>
-    </div>
-
-    <!-- Content -->
-    <div class="container mx-auto px-6">
+  <section class="py-12 sm:py-16 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6">
       <div class="max-w-4xl mx-auto">
-        <!-- Section Title -->
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+        <div class="text-center mb-8 sm:mb-12">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 px-2">
             Apa itu <span class="text-eco-green-600">Eco Enzyme</span>?
           </h2>
-          <p class="text-base md:text-lg text-gray-600">
+          <p class="text-sm sm:text-base md:text-lg text-gray-600 px-2">
             Pelajari manfaat dan cara pembuatan eco enzyme untuk lingkungan yang lebih baik
           </p>
         </div>
 
-        <!-- Main Content -->
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Left: Image -->
-          <div class="relative">
-            <div class="aspect-square rounded-xl overflow-hidden shadow-lg">
+        <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+          <div class="relative order-2 md:order-1">
+            <div class="aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
               <img
                 src="@/assets/images/eco-enzyme-process.jpg"
                 alt="Proses Pembuatan Eco Enzyme"
                 class="w-full h-full object-cover"
               />
             </div>
-            <!-- Decorative elements -->
             <div
-              class="absolute -z-10 -top-3 -left-3 w-full h-full bg-eco-green-100 rounded-xl"
+              class="absolute -z-10 -top-2 -left-2 sm:-top-3 sm:-left-3 w-full h-full bg-eco-green-100 rounded-lg sm:rounded-xl"
             ></div>
             <div
-              class="absolute -z-10 -bottom-3 -right-3 w-full h-full bg-eco-green-200 rounded-xl"
+              class="absolute -z-10 -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-full h-full bg-eco-green-200 rounded-lg sm:rounded-xl"
             ></div>
           </div>
 
-          <!-- Right: Content -->
-          <div class="space-y-6">
-            <div class="space-y-4">
-              <h3 class="text-xl md:text-2xl font-semibold text-gray-900">
+          <div class="space-y-4 sm:space-y-6 order-1 md:order-2">
+            <div class="space-y-3 sm:space-y-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
                 Solusi Alami untuk Limbah Organik
               </h3>
-              <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Eco Enzyme adalah cairan fermentasi yang dibuat dari sisa buah dan sayuran, gula
                 merah, dan air. Proses fermentasi alami ini menghasilkan enzim yang memiliki banyak
                 manfaat untuk lingkungan dan kehidupan sehari-hari.
               </p>
             </div>
 
-            <!-- Benefits -->
-            <div class="space-y-3">
-              <h4 class="text-base md:text-lg font-semibold text-gray-900">Manfaat Eco Enzyme:</h4>
+            <div class="space-y-2 sm:space-y-3">
+              <h4 class="text-base sm:text-lg font-semibold text-gray-900">Manfaat Eco Enzyme:</h4>
               <ul class="space-y-2">
-                <li class="flex items-start gap-3">
-                  <svg
-                    class="w-6 h-6 text-eco-green-500 flex-shrink-0 mt-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <i
+                    class="fas fa-check-circle text-eco-green-500 flex-shrink-0 mt-0.5 sm:mt-1 text-sm sm:text-base"
+                  ></i>
+                  <span class="text-sm sm:text-base text-gray-600"
+                    >Mengurangi limbah organik rumah tangga</span
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="text-gray-600">Mengurangi limbah organik rumah tangga</span>
                 </li>
-                <li class="flex items-start gap-3">
-                  <svg
-                    class="w-6 h-6 text-eco-green-500 flex-shrink-0 mt-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <i
+                    class="fas fa-check-circle text-eco-green-500 flex-shrink-0 mt-0.5 sm:mt-1 text-sm sm:text-base"
+                  ></i>
+                  <span class="text-sm sm:text-base text-gray-600"
+                    >Pembersih alami yang ramah lingkungan</span
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="text-gray-600">Pembersih alami yang ramah lingkungan</span>
                 </li>
-                <li class="flex items-start gap-3">
-                  <svg
-                    class="w-6 h-6 text-eco-green-500 flex-shrink-0 mt-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <i
+                    class="fas fa-check-circle text-eco-green-500 flex-shrink-0 mt-0.5 sm:mt-1 text-sm sm:text-base"
+                  ></i>
+                  <span class="text-sm sm:text-base text-gray-600"
+                    >Pupuk organik untuk tanaman</span
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="text-gray-600">Pupuk organik untuk tanaman</span>
                 </li>
-                <li class="flex items-start gap-3">
-                  <svg
-                    class="w-6 h-6 text-eco-green-500 flex-shrink-0 mt-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <i
+                    class="fas fa-check-circle text-eco-green-500 flex-shrink-0 mt-0.5 sm:mt-1 text-sm sm:text-base"
+                  ></i>
+                  <span class="text-sm sm:text-base text-gray-600"
+                    >Menyegarkan udara dan mengurangi bau</span
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="text-gray-600">Menyegarkan udara dan mengurangi bau</span>
                 </li>
               </ul>
             </div>
 
-            <!-- Call to Action -->
-            <div class="pt-6">
+            <div class="pt-4 sm:pt-6">
               <button
                 @click="handleLearnMore"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-eco-green-600 text-white font-semibold rounded-lg hover:bg-eco-green-700 transition-colors"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 bg-eco-green-600 text-white font-semibold rounded-lg hover:bg-eco-green-700 transition-colors text-sm sm:text-base"
               >
                 Pelajari Lebih Lanjut
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  ></path>
-                </svg>
+                <i class="fas fa-arrow-right"></i>
               </button>
             </div>
           </div>
@@ -139,9 +94,4 @@
   </section>
 </template>
 
-<script setup>
-const handleLearnMore = () => {
-  // Implement navigation to detailed information page
-  console.log('Navigate to learn more page')
-}
-</script>
+<script setup></script>

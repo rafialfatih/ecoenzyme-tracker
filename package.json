@@ -15,10 +15,21 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@preact/signals": "^2.5.0",
+    "@supabase/supabase-js": "^2.80.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.554.0",
     "pinia": "^3.0.3",
+    "preact": "^10.27.2",
+    "radix-vue": "^1.9.17",
+    "tailwind-merge": "^3.4.0",
+    "temporal-polyfill": "^0.3.0",
     "v-click-outside": "^3.2.0",
     "vue": "^3.5.22",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "vuetify": "^3.10.11"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.16",

@@ -20,3 +20,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+input[type='text']:not(.v-field__input):not([class*='v-']),
+input[type='email']:not(.v-field__input):not([class*='v-']),
+input[type='password']:not(.v-field__input):not([class*='v-']),
+input[type='number']:not(.v-field__input):not([class*='v-']),
+input[type='tel']:not(.v-field__input):not([class*='v-']),
+input[type='url']:not(.v-field__input):not([class*='v-']),
+input[type='search']:not(.v-field__input):not([class*='v-']),
+input[type='date']:not(.v-field__input):not([class*='v-']),
+textarea:not(.v-field__input):not([class*='v-']),
+select:not(.v-field__input):not([class*='v-']) {
+  border-style: solid !important;
+  border-width: 2px !important;
+}
+
+input.border-2,
+textarea.border-2,
+select.border-2 {
+  border-style: solid !important;
+  border-width: 2px !important;
+  border-color: rgb(209 213 219) !important;
+}
+
+input.border-2:focus,
+textarea.border-2:focus,
+select.border-2:focus {
+  border-color: rgb(16 185 129) !important;
+}

@@ -36,5 +36,3 @@ coverage
 __screenshots__/
 
 .env
-.env.local
-.env.*.local

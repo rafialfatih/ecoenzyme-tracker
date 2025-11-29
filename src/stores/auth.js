@@ -97,7 +97,7 @@ export const useAuthStore = defineStore('auth', () => {
         session.value = data.session
       }
     } catch (err) {
-      console.error('Error checking auth:', err)
+      // Auth check error handling
     } finally {
       loading.value = false
     }

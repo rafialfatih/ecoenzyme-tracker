@@ -207,7 +207,7 @@ const handleLogout = async () => {
     router.push('/')
     closeUserMenu()
   } catch (error) {
-    console.error('Error logging out:', error)
+    // Logout error handling
   }
 }
 

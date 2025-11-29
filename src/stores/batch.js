@@ -54,7 +54,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error fetching batches:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -78,7 +77,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error fetching batch:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -126,7 +124,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error creating batch:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -159,7 +156,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error updating batch:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -184,7 +180,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true }
     } catch (err) {
       error.value = err.message
-      console.error('Error deleting batch:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -225,7 +220,6 @@ export const useBatchStore = defineStore('batch', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error logging batch activity:', err)
       return { success: false, error: err.message }
     }
   }

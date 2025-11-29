@@ -64,7 +64,6 @@ export const useActivityStore = defineStore('activity', () => {
       return { success: true, url: publicUrl }
     } catch (err) {
       error.value = err.message
-      console.error('Error uploading photo:', err)
       return { success: false, error: err.message }
     } finally {
       uploadingPhoto.value = false
@@ -86,7 +85,6 @@ export const useActivityStore = defineStore('activity', () => {
 
       return { success: true }
     } catch (err) {
-      console.error('Error deleting photo:', err)
       return { success: false, error: err.message }
     }
   }
@@ -107,7 +105,6 @@ export const useActivityStore = defineStore('activity', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error fetching activities:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -158,7 +155,6 @@ export const useActivityStore = defineStore('activity', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error creating activity:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -188,7 +184,6 @@ export const useActivityStore = defineStore('activity', () => {
       return { success: true, data }
     } catch (err) {
       error.value = err.message
-      console.error('Error updating activity:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false
@@ -215,7 +210,6 @@ export const useActivityStore = defineStore('activity', () => {
       return { success: true }
     } catch (err) {
       error.value = err.message
-      console.error('Error deleting activity:', err)
       return { success: false, error: err.message }
     } finally {
       loading.value = false

@@ -140,7 +140,7 @@ const handleLogout = async () => {
       router.push('/')
     }
   } catch (error) {
-    console.error('Logout failed:', error)
+    // Logout error handling
   }
 }
 </script>

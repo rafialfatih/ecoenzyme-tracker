@@ -370,7 +370,7 @@ onMounted(async () => {
       allActivities.value = sorted
     }
   } catch (error) {
-    console.error('Error fetching activities:', error)
+    // Error fetching activities
   }
 })
 </script>

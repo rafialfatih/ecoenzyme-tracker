@@ -8,34 +8,25 @@ export const useActivityStore = defineStore('activity', () => {
   const error = ref(null)
   const uploadingPhoto = ref(false)
 
-  /**
-   * Sorts activities by date first, then by created_at timestamp (newest first)
-   * @param {Array} activitiesArray - Array of activities to sort
-   * @returns {Array} Sorted array
-   */
   const sortActivitiesByDateAndTime = (activitiesArray) => {
     return [...activitiesArray].sort((a, b) => {
-      // First compare by activity_date
       const dateA = new Date(a.activity_date + 'T00:00:00')
       const dateB = new Date(b.activity_date + 'T00:00:00')
       const dateDiff = dateB.getTime() - dateA.getTime()
 
       if (dateDiff !== 0) {
-        return dateDiff // Descending (newer dates first)
+        return dateDiff
       }
 
-      // If same date, compare by created_at timestamp
       if (a.created_at && b.created_at) {
         const timeA = new Date(a.created_at).getTime()
         const timeB = new Date(b.created_at).getTime()
         return timeB - timeA // Descending (newer times first)
       }
 
-      // If one has created_at and the other doesn't, prioritize the one with created_at
       if (a.created_at && !b.created_at) return -1
       if (!a.created_at && b.created_at) return 1
 
-      // Fallback: use id (assuming higher id = newer record)
       return (b.id || 0) - (a.id || 0) // Descending
     })
   }
@@ -112,7 +103,6 @@ export const useActivityStore = defineStore('activity', () => {
 
       if (fetchError) throw fetchError
 
-      // Sort by date first, then by created_at timestamp (newest first)
       activities.value = sortActivitiesByDateAndTime(data || [])
       return { success: true, data }
     } catch (err) {
@@ -210,10 +200,8 @@ export const useActivityStore = defineStore('activity', () => {
     error.value = null
 
     try {
-      // Get activity first to check if it has photo
       const activity = activities.value.find((a) => a.id === id)
 
-      // Delete photo from storage if exists
       if (activity?.photo_url) {
         await deletePhoto(activity.photo_url)
       }
@@ -222,7 +210,6 @@ export const useActivityStore = defineStore('activity', () => {
 
       if (deleteError) throw deleteError
 
-      // Remove from local state
       activities.value = activities.value.filter((a) => a.id !== id)
 
       return { success: true }
@@ -270,12 +257,10 @@ export const useActivityStore = defineStore('activity', () => {
   }
 
   return {
-    // State
     activities,
     loading,
     error,
     uploadingPhoto,
-    // Actions
     uploadPhoto,
     deletePhoto,
     fetchActivitiesByBatch,

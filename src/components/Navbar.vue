@@ -12,8 +12,11 @@
           to="/"
           class="flex items-center gap-2 text-eco-green-600 font-semibold text-lg hover:text-eco-green-700"
         >
-          <i class="fas fa-leaf text-2xl"></i>
-          <span>Eco Enzyme</span>
+          <img
+            src="@/assets/images/gars-oneline.png"
+            alt="Proses Pembuatan Eco Enzyme"
+            class="w-48 h-48"
+          />
         </router-link>
 
         <div class="hidden md:flex items-center gap-6">

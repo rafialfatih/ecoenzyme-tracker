@@ -31,8 +31,8 @@
       <p
         class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-2"
       >
-        Panduan lengkap membuat eco enzyme dari sampah organik rumah tangga. Tracking progress,
-        reminder otomatis, dan tips praktis dalam satu aplikasi.
+        Selamat datang di GARS Eco, panduan lengkap membuat eco enzyme dari sampah organik rumah
+        tangga. Tracking progress, reminder otomatis, dan tips praktis dalam satu aplikasi.
       </p>
 
       <div

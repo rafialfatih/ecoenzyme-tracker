@@ -20,8 +20,8 @@
           <p
             class="text-sm sm:text-base md:text-lg lg:text-xl text-eco-green-50 max-w-2xl mx-auto px-2"
           >
-            Bergabunglah dengan ribuan orang yang sudah membuat eco enzyme dan berkontribusi untuk
-            planet yang lebih hijau.
+            Mulai membuat eco enzyme dengan GARS Eco. Sebagai kontribusi untuk planet yang lebih
+            hijau sekarang.
           </p>
         </div>
 

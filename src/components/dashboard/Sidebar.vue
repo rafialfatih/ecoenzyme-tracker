@@ -20,8 +20,12 @@
   >
     <div class="flex flex-col h-full">
       <div class="flex items-center justify-between h-16 border-b border-gray-200 px-4">
-        <router-link to="/dashboard" class="text-xl font-bold text-eco-green-600">
-          Eco Enzyme
+        <router-link to="/" class="text-xl font-bold text-eco-green-600">
+          <img
+            src="@/assets/images/gars-twoline.png"
+            alt="Proses Pembuatan Eco Enzyme"
+            class="w-32 h-32"
+          />
         </router-link>
         <button @click="closeMobileMenu" class="md:hidden text-gray-500 hover:text-gray-700">
           <i class="fas fa-times text-xl"></i>

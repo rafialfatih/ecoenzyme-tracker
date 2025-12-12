@@ -47,37 +47,7 @@
                 </button>
               </div>
             </div>
-
-            <div>
-              <p class="text-sm font-medium text-gray-700 mb-2">Filter Kondisi:</p>
-              <div class="flex flex-wrap gap-2">
-                <button
-                  v-for="filter in conditionFilters"
-                  :key="filter.value"
-                  @click="activeConditionFilter = filter.value"
-                  class="px-4 py-2 rounded-lg font-medium transition-colors"
-                  :class="
-                    activeConditionFilter === filter.value
-                      ? 'bg-eco-green-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  "
-                >
-                  {{ filter.label }}
-                  <span
-                    class="ml-2 px-2 py-0.5 rounded-full text-xs"
-                    :class="
-                      activeConditionFilter === filter.value
-                        ? 'bg-white/20 text-white'
-                        : 'bg-gray-200 text-gray-600'
-                    "
-                  >
-                    {{ getConditionFilterCount(filter.value) }}
-                  </span>
-                </button>
-              </div>
-            </div>
           </div>
-
           <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
             <div class="relative max-w-md">
               <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
@@ -242,41 +212,14 @@ const filters = [
   { label: 'Gagal', value: 'failed' },
 ]
 
-const conditionFilters = [
-  { label: 'Semua Kondisi', value: 'all' },
-  { label: 'Aman', value: 'Aman' },
-  { label: 'Perlu Perhatian', value: 'Perlu Perhatian' },
-  { label: 'Siap Panen', value: 'Siap Panen' },
-  { label: 'Potensi Gagal', value: 'Potensi Gagal' },
-  { label: 'Gagal Fermentasi', value: 'Gagal Fermentasi' },
-  { label: 'Fermentasi Berhasil', value: 'Fermentasi Berhasil' },
-]
-
-const batchesWithCondition = computed(() => {
-  return batchStore.batches.map((batch) => {
-    const batchActivities = allActivities.value.filter((a) => a.batch_id === batch.id)
-
-    const progressDays = batchStore.getBatchProgress(batch)
-
-    const condition = evaluateBatchCondition(batch, batchActivities, progressDays)
-
-    return {
-      ...batch,
-      condition: condition?.status || null,
-    }
-  })
-})
-
 const filteredBatches = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
 
-  return batchesWithCondition.value.filter((batch) => {
+  return batchStore.batches.filter((batch) => {
     const matchesFilter = activeFilter.value === 'all' || batch.status === activeFilter.value
-    const matchesConditionFilter =
-      activeConditionFilter.value === 'all' || batch.condition === activeConditionFilter.value
     const matchesSearch = query.length === 0 || batch.name?.toLowerCase().includes(query)
 
-    return matchesFilter && matchesConditionFilter && matchesSearch
+    return matchesFilter && matchesSearch
   })
 })
 
@@ -286,31 +229,6 @@ const getFilterCount = (filter) => {
   if (filter === 'completed') return batchStore.totalCompletedBatches
   if (filter === 'failed') return batchStore.totalFailedBatches
   return 0
-}
-
-const getConditionFilterCount = (conditionValue) => {
-  let filtered = batchesWithCondition.value
-  if (activeFilter.value !== 'all') {
-    filtered = filtered.filter((b) => b.status === activeFilter.value)
-  }
-
-  if (conditionValue === 'all') return filtered.length
-  return filtered.filter((b) => b.condition === conditionValue).length
-}
-
-const getConditionBadgeClass = (condition) => {
-  if (!condition) return 'bg-gray-100 text-gray-700'
-
-  const classes = {
-    Aman: 'bg-eco-green-100 text-eco-green-700',
-    'Siap Panen': 'bg-eco-green-100 text-eco-green-700',
-    'Perlu Perhatian': 'bg-yellow-100 text-yellow-700',
-    'Potensi Gagal': 'bg-red-100 text-red-700',
-    'Gagal Fermentasi': 'bg-red-100 text-red-700',
-    'Fermentasi Berhasil': 'bg-blue-100 text-blue-700',
-  }
-
-  return classes[condition] || 'bg-gray-100 text-gray-700'
 }
 
 const getFilterLabel = () => {

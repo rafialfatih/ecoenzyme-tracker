@@ -165,56 +165,6 @@
                       {{ batch.notes }}
                     </dd>
                   </div>
-                  <div class="pt-3 border-t border-gray-100">
-                    <dt class="font-medium text-gray-600 mb-2">Kondisi Batch</dt>
-                    <dd>
-                      <div
-                        v-if="batchCondition"
-                        class="p-3 rounded-lg"
-                        :class="{
-                          'bg-eco-green-50 border border-eco-green-200':
-                            batchCondition.status === 'Aman' ||
-                            batchCondition.status === 'Siap Panen',
-                          'bg-yellow-50 border border-yellow-200':
-                            batchCondition.status === 'Perlu Perhatian',
-                          'bg-red-50 border border-red-200':
-                            batchCondition.status === 'Potensi Gagal' ||
-                            batchCondition.status === 'Gagal Fermentasi',
-                          'bg-blue-50 border border-blue-200':
-                            batchCondition.status === 'Fermentasi Berhasil',
-                        }"
-                      >
-                        <div class="flex items-center gap-2 mb-2">
-                          <span
-                            class="px-3 py-1 rounded-full text-xs font-semibold"
-                            :class="{
-                              'bg-eco-green-600 text-white':
-                                batchCondition.status === 'Aman' ||
-                                batchCondition.status === 'Siap Panen',
-                              'bg-yellow-500 text-white':
-                                batchCondition.status === 'Perlu Perhatian',
-                              'bg-red-600 text-white':
-                                batchCondition.status === 'Potensi Gagal' ||
-                                batchCondition.status === 'Gagal Fermentasi',
-                              'bg-blue-600 text-white':
-                                batchCondition.status === 'Fermentasi Berhasil',
-                            }"
-                          >
-                            {{ batchCondition.status }}
-                          </span>
-                        </div>
-                        <p
-                          v-if="batchCondition.recommendation"
-                          class="text-xs text-gray-600 whitespace-pre-line mt-2"
-                        >
-                          {{ batchCondition.recommendation }}
-                        </p>
-                      </div>
-                      <p v-else class="text-xs text-gray-500">
-                        Belum ada data kondisi. Lakukan pengecekan kondisi terlebih dahulu.
-                      </p>
-                    </dd>
-                  </div>
                 </dl>
               </div>
 
@@ -376,19 +326,6 @@ const statusLabel = computed(() => {
   if (batch.value.status === 'completed') return 'Selesai'
   if (batch.value.status === 'failed') return 'Gagal'
   return batch.value.status
-})
-
-const statusBadgeClass = computed(() => {
-  if (!batch.value) return ''
-  return {
-    'bg-eco-green-100 text-eco-green-700': batch.value.status === 'active',
-    'bg-blue-100 text-blue-700': batch.value.status === 'completed',
-    'bg-red-100 text-red-700': batch.value.status === 'failed',
-  }
-})
-
-const batchCondition = computed(() => {
-  return evaluateBatchCondition(batch.value, activityStore.activities, progressDays.value)
 })
 
 const formatDate = (dateString) => {

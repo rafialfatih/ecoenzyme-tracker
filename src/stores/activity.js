@@ -136,7 +136,6 @@ export const useActivityStore = defineStore('activity', () => {
         activity_date: activityData.activity_date || new Date().toISOString().split('T')[0],
         activity_type: activityData.activity_type,
         description: activityData.description || '',
-        condition: activityData.condition || {},
         photo_url: photoUrl,
       }
 
